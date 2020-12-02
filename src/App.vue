@@ -1,32 +1,65 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <section class="hero is-light is-small">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <a href="https://www.saintleon31.fr">
+            <img
+              src="img/mairie.jpg"
+              alt="Logo"
+              width="120"
+            />
+          </a>
+          <p class="title">
+            Services @ Saint-Leon
+            <br />
+            <span class="tag is-success">Les pages jaunes de Saint-Leon</span>
+          </p>
+        </div>
+      </div>
+    </section>
+    <div><nav-bar/></div>
+    <section class="container">
+      <div class="columns is-multiline">
+        <div v-if="!ready"> Loading </div>
+        <div v-else>
+          <router-view />
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+import NavBar from '@/components/NavBar.vue'
+
+export default {
+  name: 'App',
+  components: {
+    NavBar
+  },
+  methods: {
+    ...mapActions({ getResourcesFromServer: 'recupererResources' })
+  },
+  data () {
+    return {
+      ready: false
+    }
+  },
+  created () {
+    this.getResourcesFromServer()
+      .then(() => { this.ready = true })
+      .catch(err => {
+        console.log('Erreur de recuperation des resources', err)
+      })
+      .finally(() => {
+        this.ready = true
+      })
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+@import "../node_modules/bulma/css/bulma.css";
 </style>
