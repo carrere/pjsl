@@ -36,21 +36,9 @@
               </a>
             </div>
 
-            <p class="body" v-html="resource.description"></p>
+            <small><i><p class="body" v-html="resource.description"></p></i></small>
             <span class="tag is-primary">{{ resource.souscategorie }}</span>
           </div>
-        </div>
-        <div class="links content buttons are-small">
-          <span v-for="link in resource.links" :key="link.index">
-            <a
-              class="button is-link is-inverted"
-              :href="link.href"
-              :target="link.label"
-            >
-              <i v-if="link.private" class="fas fa-lock fa-xs icon-space" />
-              <div v-html="link.label"></div>
-            </a>
-          </span>
         </div>
       </div>
     </div>
