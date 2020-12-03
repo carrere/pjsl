@@ -1,40 +1,79 @@
 <template>
   <section class="container">
-    
-    <div class="tabs">
-        <ul>
-          <router-link v-for="category in categories" :key="category.id" :category="category"
-            active-class="is-active"
-            :to="category.route" 
-          >{{category.label}}</router-link>
-          
-        </ul>
-    </div>
-
-    <div v-if="this.$route.params.main" class="tabs">
+    <div class="tabs is-centered">
       <ul>
-          <router-link v-for="sub in subcategories[this.$route.params.main]" :key="sub.id" :sub="sub"
-            active-class="is-active"
-            :to="sub.route" 
-          >{{sub.label}}</router-link>
-          
+        <router-link
+          v-for="category in categories"
+          :key="category.id"
+          :category="category"
+          active-class="is-active"
+          :to="category.route"
+          >{{ category.label }}</router-link
+        >
+        <li>
+        <div class="field">
+          <p class="control has-icons-right">
+            &nbsp;&nbsp;<input
+            size="10"
+              class="input"
+              v-model="search"
+              type="text"
+              placeholder="mots clés"
+              @change="searchKeyword()"
+            />
+            <span class="icon is-small is-right">
+              <magnify-icon />
+            </span>
+          </p>
+        </div>
+        </li>
       </ul>
     </div>
-    </section>
+
+    <div
+      v-if="this.$route.params.main"
+      class="tabs is-centered is-toggle is-small"
+    >
+      <ul>
+        <router-link
+          v-for="sub in subcategories[this.$route.params.main]"
+          :key="sub.id"
+          :sub="sub"
+          active-class="is-active"
+          :to="sub.route"
+          >{{ sub.label }}</router-link
+        >
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
+import { mapGetters } from "vuex";
+import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 export default {
-  name: 'NavBar',
-  methods: {},
+  name: "NavBar",
+  methods: {
+    searchKeyword() {
+      this.$router.push({
+        name: "searchPage",
+        params: { search: this.search },
+      });
+    },
+  },
+  components: {
+    MagnifyIcon,
+  },
+  data() {
+    return {
+      search: "",
+    };
+  },
   computed: {
-    ...mapGetters({ categories: 'getCategories' }),
-    ...mapGetters({ subcategories: 'getSubCategories' })
-  }
-  
-}
+    ...mapGetters({ categories: "getCategories" }),
+    ...mapGetters({ subcategories: "getSubCategories" }),
+  },
+};
 </script>
 
 <style>
@@ -44,5 +83,9 @@ export default {
 }
 .icon-space {
   padding-right: 0.5em;
+}
+.is-active {
+  background-color: rgb(218, 218, 218);
+  cursor: pointer;
 }
 </style>

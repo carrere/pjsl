@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Tools from '../views/Tools.vue'
+import Resources from '../views/Resources.vue'
 import NotFound from '../views/NotFound.vue'
 import Home from '../views/Home.vue'
 
@@ -15,12 +15,17 @@ const routes = [
   {
     path: '/category/:main',
     name: 'catPage',
-    component: Tools
+    component: Resources
   },
   {
     path: '/category/:main/:sub',
     name: 'subPage',
-    component: Tools
+    component: Resources
+  },
+  {
+    path: '/search/:search',
+    name: 'searchPage',
+    component: Resources
   },
   {
     path: '/',

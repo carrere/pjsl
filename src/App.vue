@@ -1,14 +1,10 @@
 <template>
   <div id="app">
-    <section class="hero is-light is-small">
+    <section class="hero is-white is-small">
       <div class="hero-body">
         <div class="container has-text-centered">
           <a href="https://www.saintleon31.fr">
-            <img
-              src="img/mairie.jpg"
-              alt="Logo"
-              width="120"
-            />
+            <img src="img/mairie.jpg" alt="Logo" width="120" />
           </a>
           <p class="title">
             Services @ Saint-Leon
@@ -18,11 +14,11 @@
         </div>
       </div>
     </section>
-    <div><nav-bar/></div>
+    <div><nav-bar /></div>
     <section class="container">
       <div class="columns is-multiline">
-        <div v-if="!ready"> Loading </div>
-        <div v-else  class="container">
+        <div v-if="!ready">Loading</div>
+        <div v-else class="container">
           <router-view />
         </div>
       </div>
@@ -31,33 +27,35 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import NavBar from '@/components/NavBar.vue'
+import { mapActions } from "vuex";
+import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    NavBar
+    NavBar,
   },
   methods: {
-    ...mapActions({ getResourcesFromServer: 'recupererResources' })
+    ...mapActions({ getResourcesFromServer: "recupererResources" }),
   },
-  data () {
+  data() {
     return {
-      ready: false
-    }
+      ready: false,
+    };
   },
-  created () {
+  created() {
     this.getResourcesFromServer()
-      .then(() => { this.ready = true })
-      .catch(err => {
-        console.log('Erreur de recuperation des resources', err)
+      .then(() => {
+        this.ready = true;
+      })
+      .catch((err) => {
+        console.log("Erreur de recuperation des resources", err);
       })
       .finally(() => {
-        this.ready = true
-      })
-  }
-}
+        this.ready = true;
+      });
+  },
+};
 </script>
 
 <style>
