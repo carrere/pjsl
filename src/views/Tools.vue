@@ -1,27 +1,25 @@
 <template>
-  <section>
+  <section class="container">
     <hr>
-    <div class="columns is-multiline">
     
     <div v-if="this.$route.params.sub" class="columns is-multiline">
-
+      
       <resource-list-item
         v-for="resource in resources.filter(r => r.categorie.includes(this.$route.params.main)).filter(r => r.souscategorie.includes(this.$route.params.sub))"
         :key="resource.id"
         :resource="resource"
       ></resource-list-item>
+      
     </div>
-  <div v-else-if="this.$route.params.main" class="columns is-multiline">
-
+  
+    <div v-else-if="this.$route.params.main" class="columns is-multiline">
       <resource-list-item
         v-for="resource in resources.filter(r => r.categorie.includes(this.$route.params.main))"
         :key="resource.id"
         :resource="resource"
       ></resource-list-item>
     </div>
-
-
-    </div>
+    
   </section>
 </template>
 

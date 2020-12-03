@@ -22,7 +22,7 @@
     <section class="container">
       <div class="columns is-multiline">
         <div v-if="!ready"> Loading </div>
-        <div v-else>
+        <div v-else  class="container">
           <router-view />
         </div>
       </div>

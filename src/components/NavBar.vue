@@ -1,14 +1,25 @@
 <template>
   <section class="container">
-      <div class="tabs">
+    
+    <div class="tabs">
         <ul>
           <router-link v-for="category in categories" :key="category.id" :category="category"
             active-class="is-active"
             :to="category.route" 
-          >{{category.main}}</router-link>
+          >{{category.label}}</router-link>
           
         </ul>
-      </div>
+    </div>
+
+    <div v-if="this.$route.params.main" class="tabs">
+      <ul>
+          <router-link v-for="sub in subcategories[this.$route.params.main]" :key="sub.id" :sub="sub"
+            active-class="is-active"
+            :to="sub.route" 
+          >{{sub.label}}</router-link>
+          
+      </ul>
+    </div>
     </section>
 </template>
 
@@ -19,7 +30,8 @@ export default {
   name: 'NavBar',
   methods: {},
   computed: {
-    ...mapGetters({ categories: 'getCategories' })
+    ...mapGetters({ categories: 'getCategories' }),
+    ...mapGetters({ subcategories: 'getSubCategories' })
   }
   
 }

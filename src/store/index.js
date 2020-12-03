@@ -17,24 +17,34 @@ export default new Vuex.Store({
       state.resources.forEach(r => {
         if (! categories[r.categorie])
         {
-          console.log("ici")
           categories[r.categorie] = {}
           categories[r.categorie]['id'] = count++
           categories[r.categorie]['route'] = "/category/" + r.categorie
-          categories[r.categorie]['main'] = r.categorie.charAt(0).toUpperCase() + r.categorie.slice(1)
-          categories[r.categorie]['sub'] = {}
-          
+          categories[r.categorie]['label'] = r.categorie.charAt(0).toUpperCase() + r.categorie.slice(1)
         }
-        categories[r.categorie]['sub'][r.souscategorie] = true
       })
-
-      console.log(categories)
-      
       return categories
-
+    },
+    getSubCategories(state) {
+      let count = 0
+      let subcategories = {}
+      state.resources.forEach(r => {
+        if (! subcategories[r.categorie])
+        {  
+          subcategories[r.categorie] = {}
+        }
+        if (! subcategories[r.categorie][r.souscategorie])
+        {
+          subcategories[r.categorie][r.souscategorie] = {}
+          subcategories[r.categorie][r.souscategorie]['id'] = count++
+          subcategories[r.categorie][r.souscategorie]['label'] = r.souscategorie.charAt(0).toUpperCase() + r.souscategorie.slice(1)
+          let route =  "/category/" + r.categorie + "/" + r.souscategorie
+          subcategories[r.categorie][r.souscategorie]['route'] = route
+        }
+      })
+      return subcategories
     },
     getResources (state) {
-      console.table(state.resources)
       return state.resources
     }
   },
