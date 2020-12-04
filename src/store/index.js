@@ -28,10 +28,10 @@ export default new Vuex.Store({
       let count = 0
       let subcategories = {}
       state.resources.forEach(r => {
-        if (!subcategories[r.categorie]) {
+        if (r.categorie && !subcategories[r.categorie]) {
           subcategories[r.categorie] = {}
         }
-        if (!subcategories[r.categorie][r.souscategorie]) {
+        if (r.categorie && r.souscategorie && !subcategories[r.categorie][r.souscategorie]) {
           subcategories[r.categorie][r.souscategorie] = {}
           subcategories[r.categorie][r.souscategorie]['id'] = count++
           subcategories[r.categorie][r.souscategorie]['label'] = r.souscategorie.charAt(0).toUpperCase() + r.souscategorie.slice(1)
