@@ -15,7 +15,7 @@ export default new Vuex.Store({
       let categories = {}
 
       state.resources.forEach(r => {
-        if (!categories[r.categorie]) {
+        if (r.categorie && !categories[r.categorie]) {
           categories[r.categorie] = {}
           categories[r.categorie]['id'] = count++
           categories[r.categorie]['route'] = "/category/" + r.categorie
@@ -48,7 +48,7 @@ export default new Vuex.Store({
         let keys = Object.keys(r)
         let content = ''
         keys.map(k => content += ' ' + r[k])
-        r['content'] = content
+        r['content'] = content.toLowerCase()
         r['id'] = count++
         resources.push(r)
       })

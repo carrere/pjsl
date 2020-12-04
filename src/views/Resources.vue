@@ -7,7 +7,7 @@
       <div v-if="this.$route.params.search" class="columns is-multiline">
       <resource-list-item
         v-for="resource in resources
-          .filter((r) => r.content.includes(this.$route.params.search))"
+          .filter((r) => r.content.includes(this.$route.params.search.toLowerCase()))"
         :key="resource.id"
         :resource="resource"
       ></resource-list-item>
