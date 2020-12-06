@@ -14,7 +14,10 @@
         </div>
       </div>
     </section>
-    <div><nav-bar /></div>
+    <div>
+      <nav-bar />
+   
+    </div>
     <section class="container">
       <div class="columns is-multiline">
         <div v-if="!ready">Loading</div>

@@ -11,21 +11,21 @@
           >{{ category.label }}</router-link
         >
         <li>
-        <div class="field">
-          <p class="control has-icons-right">
-            &nbsp;&nbsp;<input
-            size="10"
-              class="input"
-              v-model="search"
-              type="text"
-              placeholder="mots clés"
-              @change="searchKeyword()"
-            />
-            <span class="icon is-small is-right">
-              <magnify-icon />
-            </span>
-          </p>
-        </div>
+          <div class="field">
+            <p class="control has-icons-right">
+              &nbsp;&nbsp;<input
+                size="10"
+                class="input"
+                v-model="search"
+                type="text"
+                placeholder="mots clés"
+                @input="searchKeyword()"
+              />
+              <span class="icon is-small is-right">
+                <magnify-icon />
+              </span>
+            </p>
+          </div>
         </li>
       </ul>
     </div>
@@ -45,6 +45,40 @@
         >
       </ul>
     </div>
+
+<article  v-if="!this.$route.params.main && !this.$route.params.search" class="message is-primary">
+  <div class="message-body">
+<p>Bienvenue sur les pages jaunes de Saint-Léon
+<ul>
+  <li>Comment figurer ?</li>
+<li>Comment ne pas figurer?</li>
+<li>Charte</li>
+<li><a href="mailto:Contact">Nous contacter</a></li>
+<li><a href="/api/data.csv">Lien rawdata</a></li>
+</ul></p>
+  </div>
+</article>
+
+    <div class="columns is-multiline"
+      v-if="!this.$route.params.main && !this.$route.params.search"
+    >
+
+        <article  v-for="category in Object.keys(subcategories)" :key="category" class="message is-light column is-one-quarter">
+          <div class="message-header">
+            <p>{{ category }}</p>
+          </div>
+          <div class="message-body">
+            <router-link
+          v-for="sub in subcategories[category]"
+          :key="sub.id"
+          :sub="sub"
+          :to="sub.route"
+          >&nbsp; <button class="button"> {{ sub.label }}</button> &nbsp;</router-link
+        >
+          </div>
+        </article>
+      </div>
+
   </section>
 </template>
 

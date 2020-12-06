@@ -1,13 +1,18 @@
 <template>
   <div class="column is-one-quarter">
     <div class="card is-shady">
-      <div class="card-content">
-        <div class="media">
-          <!--           <div class="media-left">
-            <figure class="image is-48x48">
-              <img :src="resource.logo" alt="Placeholder image" />
-            </figure>
-          </div> -->
+      <div class="card-content"   >
+        <div class="media" >
+          <div  class="media-left">
+            <!--<div class="modal">
+              <div class="modal-background"></div>
+              <div class="modal-content">
+               bla bla
+              </div>
+              <button class="modal-close is-large" aria-label="close"></button>
+            </div>
+            -->
+          </div>
           <div class="media-content">
             <p class="title is-4">
               {{ resource.nom
@@ -36,7 +41,9 @@
               </a>
             </div>
 
-            <small><i><p class="body" v-html="resource.description"></p></i></small>
+            <small
+              ><i><p  class="body" v-html="resource.description"></p></i
+            ></small>
             <span class="tag is-primary">{{ resource.souscategorie }}</span>
           </div>
         </div>
@@ -61,6 +68,9 @@ export default {
     EmailIcon,
   },
 };
+
+
+
 </script>
 
 <style>
