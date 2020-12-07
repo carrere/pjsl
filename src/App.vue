@@ -3,42 +3,46 @@
     <section class="hero is-white is-small">
       <div class="hero-body">
         <div class="container has-text-centered">
-          
-            <div class="columns is-vcentered">
-              <div class="column is-three-quarter">
-                <a href="/"><span class="title"
-                  >Les pages jaunes de <br>Saint-Leon/Caussidières</span
-                ></a><br />
+          <div class="columns is-vcentered">
+            <div class="column is-three-quarter">
+              <a href="/"
+                ><span class="title"
+                  >Les pages jaunes de <br />Saint-Leon/Caussidières</span
+                ></a
+              ><br />
+            </div>
+            <div class="column is-one-quarter">
+              <div class="field">
+                <p class="control has-icons-right">
+                  &nbsp;&nbsp;<input
+                    size="10"
+                    class="input"
+                    v-model="search"
+                    type="text"
+                    placeholder="mots clés"
+                    @input="searchKeyword()"
+                  />
+                  <span class="icon is-small is-right">
+                    <magnify-icon />
+                  </span>
+                </p>
               </div>
-              <div class="column is-one-quarter">
-          <div class="field">
-            <p class="control has-icons-right">
-              &nbsp;&nbsp;<input
-                size="10"
-                class="input"
-                v-model="search"
-                type="text"
-                placeholder="mots clés"
-                @input="searchKeyword()"
-              />
-              <span class="icon is-small is-right">
-                <magnify-icon />
-              </span>
-            </p>
-          </div></div>
-        
-              <div class="column is-one-quarter">
-                <a href="/"><img src="img/wordcloud.png" width="200em" alt="" /></a>
-              </div></div
-          >
+            </div>
+
+            <div class="column is-one-quarter">
+              <a href="/"
+                ><img src="img/wordcloud.png" width="200em" alt=""
+              /></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-    <div>
-      <nav-bar />
+    <div >
+      <nav-bar   />
     </div>
     <hr />
-    <section class="container">
+    <section ref="results" class="container">
       <div class="columns is-multiline">
         <div
           v-if="!this.$route.params.main && !this.$route.params.search"
@@ -87,7 +91,7 @@ export default {
   name: "App",
   components: {
     NavBar,
-    MagnifyIcon
+    MagnifyIcon,
   },
   methods: {
     ...mapActions({ getResourcesFromServer: "recupererResources" }),
@@ -96,12 +100,19 @@ export default {
         name: "searchPage",
         params: { search: this.search },
       });
-    }
+    },
   },
   data() {
     return {
       ready: false,
+      search: "",
     };
+  },
+  updated() {
+    window.scrollBy({
+      top: this.$refs.results.getBoundingClientRect().top,
+      behavior: "smooth",
+    });
   },
   created() {
     this.getResourcesFromServer()
@@ -120,5 +131,4 @@ export default {
 
 <style>
 @import "../node_modules/bulma/css/bulma.css";
-
 </style>
