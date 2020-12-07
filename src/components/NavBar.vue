@@ -40,11 +40,6 @@ export default {
   },
   components: {
   },
-  data() {
-    return {
-      search: "",
-    };
-  },
   computed: {
     ...mapGetters({ categories: "getCategories" }),
     ...mapGetters({ subcategories: "getSubCategories" }),
