@@ -10,23 +10,6 @@
           :to="category.route"
           >{{ category.label }}</router-link
         >
-        <li>
-          <div class="field">
-            <p class="control has-icons-right">
-              &nbsp;&nbsp;<input
-                size="10"
-                class="input"
-                v-model="search"
-                type="text"
-                placeholder="mots clés"
-                @input="searchKeyword()"
-              />
-              <span class="icon is-small is-right">
-                <magnify-icon />
-              </span>
-            </p>
-          </div>
-        </li>
       </ul>
     </div>
 
@@ -46,46 +29,16 @@
       </ul>
     </div>
 
-
-
-<!--    <div class="columns is-multiline"
-      v-if="!this.$route.params.main && !this.$route.params.search"
-    >
-
-        <article  v-for="category in Object.keys(subcategories)" :key="category" class="message is-light column is-one-quarter">
-          <div class="message-header">
-            <p>{{ category }}</p>
-          </div>
-          <div class="message-body">
-            <router-link
-          v-for="sub in subcategories[category]"
-          :key="sub.id"
-          :sub="sub"
-          :to="sub.route"
-          >&nbsp; <button class="button"> {{ sub.label }}</button> &nbsp;</router-link
-        >
-          </div>
-        </article>
-      </div>
--->
   </section>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
 export default {
   name: "NavBar",
   methods: {
-    searchKeyword() {
-      this.$router.push({
-        name: "searchPage",
-        params: { search: this.search },
-      });
-    },
   },
   components: {
-    MagnifyIcon,
   },
   data() {
     return {
