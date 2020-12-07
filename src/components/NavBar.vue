@@ -46,20 +46,9 @@
       </ul>
     </div>
 
-<article  v-if="!this.$route.params.main && !this.$route.params.search" class="message is-primary">
-  <div class="message-body">
-<p>Bienvenue sur les pages jaunes de Saint-Léon
-<ul>
-  <li>Comment figurer ?</li>
-<li>Comment ne pas figurer?</li>
-<li>Charte</li>
-<li><a href="mailto:Contact">Nous contacter</a></li>
-<li><a href="/api/data.csv">Lien rawdata</a></li>
-</ul></p>
-  </div>
-</article>
 
-    <div class="columns is-multiline"
+
+<!--    <div class="columns is-multiline"
       v-if="!this.$route.params.main && !this.$route.params.search"
     >
 
@@ -78,7 +67,7 @@
           </div>
         </article>
       </div>
-
+-->
   </section>
 </template>
 
