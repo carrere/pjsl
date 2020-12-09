@@ -38,11 +38,12 @@
         </div>
       </div>
     </section>
-    <div ref="results">
+    <a ref="results"/>
+    <div >
       <nav-bar   />
     </div>
     <hr />
-    <section ref="results" class="container">
+    <section class="container">
       <div class="columns is-multiline">
         <div
           v-if="!this.$route.params.main && !this.$route.params.search"
@@ -96,6 +97,10 @@ export default {
   methods: {
     ...mapActions({ getResourcesFromServer: "recupererResources" }),
     searchKeyword() {
+      window.scrollBy({
+      top: this.$refs.results.getBoundingClientRect().top,
+      behavior: "smooth",
+    });
       this.$router.push({
         name: "searchPage",
         params: { search: this.search },
@@ -107,12 +112,6 @@ export default {
       ready: false,
       search: "",
     };
-  },
-  updated() {
-    window.scrollBy({
-      top: this.$refs.results.getBoundingClientRect().top,
-      behavior: "smooth",
-    });
   },
   created() {
     this.getResourcesFromServer()
