@@ -8,7 +8,13 @@
           :category="category"
           active-class="is-active"
           :to="category.route"
-          >{{ category.label }}</router-link
+          >
+                    <div class="control">
+    <div class="tags has-addons">
+      <span class="tag is-light is-large">{{ category.label }}</span>
+      <span class="tag is-large is-primary">{{ category.count }}</span>
+    </div></div>
+          </router-link
         >
       </ul>
     </div>

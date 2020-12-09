@@ -11,21 +11,23 @@ export default new Vuex.Store({
   getters: {
     // ~computed
     getCategories(state) {
-      let count = 0
+      let id = 0
       let categories = {}
 
       state.resources.forEach(r => {
         if (r.categorie && !categories[r.categorie]) {
           categories[r.categorie] = {}
-          categories[r.categorie]['id'] = count++
+          categories[r.categorie]['id'] = id++
+          categories[r.categorie]['count'] = 0
           categories[r.categorie]['route'] = "/category/" + r.categorie
           categories[r.categorie]['label'] = r.categorie.charAt(0).toUpperCase() + r.categorie.slice(1)
         }
+        categories[r.categorie]['count']++
       })
       return categories
     },
     getSubCategories(state) {
-      let count = 0
+      let id = 0
       let subcategories = {}
       state.resources.forEach(r => {
         if (r.categorie && !subcategories[r.categorie]) {
@@ -33,8 +35,8 @@ export default new Vuex.Store({
         }
         if (r.categorie && r.souscategorie && !subcategories[r.categorie][r.souscategorie]) {
           subcategories[r.categorie][r.souscategorie] = {}
+          subcategories[r.categorie][r.souscategorie]['id'] = id++
           subcategories[r.categorie][r.souscategorie]['count'] = 0
-          subcategories[r.categorie][r.souscategorie]['id'] = count++
           subcategories[r.categorie][r.souscategorie]['label'] = r.souscategorie.charAt(0).toUpperCase() + r.souscategorie.slice(1)
           let route = "/category/" + r.categorie + "/" + r.souscategorie
           subcategories[r.categorie][r.souscategorie]['route'] = route
