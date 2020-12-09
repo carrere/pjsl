@@ -42,9 +42,9 @@
             </div>
 
             <small
-              ><i><p  class="body" v-html="resource.description"></p></i
+              ><i><p  class="body description" v-html="resource.description"></p></i
             ></small>
-            <span class="tag is-primary">{{ resource.souscategorie }}</span>
+            <!--<span class="tag is-light">{{ resource.souscategorie }}</span>-->
           </div>
         </div>
       </div>
@@ -82,4 +82,11 @@ export default {
 .icon-space {
   padding-right: 0.5em;
 }
+
+.description {
+  overflow: auto;
+  max-height: 100px;
+  background-color: #f5f5f5;
+}
+
 </style>

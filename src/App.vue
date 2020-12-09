@@ -38,7 +38,7 @@
         </div>
       </div>
     </section>
-    <div >
+    <div ref="results">
       <nav-bar   />
     </div>
     <hr />

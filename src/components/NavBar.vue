@@ -15,7 +15,7 @@
 
     <div
       v-if="this.$route.params.main"
-      class="tabs is-centered is-toggle is-small"
+      class="tabs is-centered is-small"
     >
       <ul>
         <router-link
@@ -24,7 +24,14 @@
           :sub="sub"
           active-class="is-active"
           :to="sub.route"
-          >{{ sub.label }}</router-link
+          >
+          <div class="control">
+    <div class="tags has-addons">
+      <span class="tag ">{{ sub.label }}</span>
+      <span class="tag is-primary">{{ sub.count }}</span>
+    </div>
+  </div>
+</router-link
         >
       </ul>
     </div>

@@ -33,11 +33,13 @@ export default new Vuex.Store({
         }
         if (r.categorie && r.souscategorie && !subcategories[r.categorie][r.souscategorie]) {
           subcategories[r.categorie][r.souscategorie] = {}
+          subcategories[r.categorie][r.souscategorie]['count'] = 0
           subcategories[r.categorie][r.souscategorie]['id'] = count++
           subcategories[r.categorie][r.souscategorie]['label'] = r.souscategorie.charAt(0).toUpperCase() + r.souscategorie.slice(1)
           let route = "/category/" + r.categorie + "/" + r.souscategorie
           subcategories[r.categorie][r.souscategorie]['route'] = route
         }
+        subcategories[r.categorie][r.souscategorie]['count']++
       })
       return subcategories
     },
