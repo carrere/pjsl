@@ -8,21 +8,18 @@
           :category="category"
           active-class="is-active"
           :to="category.route"
-          >
-                    <div class="control">
-    <div class="tags has-addons">
-      <span class="tag is-light is-large">{{ category.label }}</span>
-      <span class="tag is-large is-primary">{{ category.count }}</span>
-    </div></div>
-          </router-link
         >
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag is-light is-large">{{ category.label }}</span>
+              <span class="tag is-large is-primary">{{ category.count }}</span>
+            </div>
+          </div>
+        </router-link>
       </ul>
     </div>
 
-    <div
-      v-if="this.$route.params.main"
-      class="tabs is-centered is-small"
-    >
+    <div v-if="this.$route.params.main" class="tabs is-centered is-small">
       <ul>
         <router-link
           v-for="sub in subcategories[this.$route.params.main]"
@@ -30,18 +27,16 @@
           :sub="sub"
           active-class="is-active"
           :to="sub.route"
-          >
-          <div class="control">
-    <div class="tags has-addons">
-      <span class="tag ">{{ sub.label }}</span>
-      <span class="tag is-primary">{{ sub.count }}</span>
-    </div>
-  </div>
-</router-link
         >
+          <div class="control">
+            <div class="tags has-addons">
+              <span class="tag">{{ sub.label }}</span>
+              <span class="tag is-primary">{{ sub.count }}</span>
+            </div>
+          </div>
+        </router-link>
       </ul>
     </div>
-
   </section>
 </template>
 
@@ -49,10 +44,8 @@
 import { mapGetters } from "vuex";
 export default {
   name: "NavBar",
-  methods: {
-  },
-  components: {
-  },
+  methods: {},
+  components: {},
   computed: {
     ...mapGetters({ categories: "getCategories" }),
     ...mapGetters({ subcategories: "getSubCategories" }),
@@ -69,7 +62,7 @@ export default {
   padding-right: 0.5em;
 }
 .is-active {
-  background-color: rgb(218, 218, 218);
+  background-color:rgba(200, 200, 200, 0.4);
   cursor: pointer;
 }
 </style>

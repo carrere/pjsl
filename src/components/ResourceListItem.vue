@@ -1,28 +1,15 @@
 <template>
-  <div class="column is-one-quarter">
+  <div class="column is-one-quarter" >
     <div class="card is-shady">
-      <div class="card-content"   >
-        <div class="media" >
-          <div  class="media-left">
-            <!--<div class="modal">
-              <div class="modal-background"></div>
-              <div class="modal-content">
-               bla bla
-              </div>
-              <button class="modal-close is-large" aria-label="close"></button>
-            </div>
-            -->
-          </div>
+      <div class="card-content">
+        <div class="media">
           <div class="media-content">
             <p class="title is-4">
-              {{ resource.nom
-              }}<a
-                v-if="resource.web != ''"
-                :href="resource.web"
-                target="_blank"
-                ><web-icon title="Site web"
-              /></a>
+             <a @click="isComponentModalActive = true" > {{ resource.nom }}</a>
+             
             </p>
+            <div class="subtitle is-6">{{ resource.souscategorie }}</div>
+
             <span class="subtitle is-6" v-if="resource.tel != ''">
               <a
                 :href="'tel:' + resource.tel"
@@ -41,10 +28,22 @@
               </a>
             </div>
 
-            <small
-              ><i><p  class="body description" v-html="resource.description"></p></i
-            ></small>
-            <!--<span class="tag is-light">{{ resource.souscategorie }}</span>-->
+            <div>
+              <b-modal ref="myModal" :active.sync="isComponentModalActive" has-modal-card>
+                <div class="modal-card" style="width: auto">
+                  <header class="modal-card-head">
+                    <p class="modal-card-title">{{ resource.nom }}</p>
+                    <a><close-icon @click="$refs.myModal.close()"/></a>
+                    
+                  </header>
+                  <section class="modal-card-body">
+                    <more-info :resource="resource" />
+                   
+                  </section>
+                </div>
+              </b-modal>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -53,25 +52,34 @@
 </template>
 
 <script>
-import WebIcon from "vue-material-design-icons/Web.vue";
 import PhoneIcon from "vue-material-design-icons/Phone.vue";
 import EmailIcon from "vue-material-design-icons/Email.vue";
+import CloseIcon from "vue-material-design-icons/Close.vue";
+
+import MoreInfo from "./MoreInfo.vue";
+
 export default {
   name: "ResourceListItem",
   props: {
     resource: { type: Object, required: true },
   },
+  data() {
+    return {
+      isComponentModalActive: false,
+      email: "evan@you.com",
+      password: "testing",
+    };
+  },
   methods: {},
   components: {
-    WebIcon,
     PhoneIcon,
     EmailIcon,
+    MoreInfo,
+    CloseIcon
   },
 };
-
-
-
 </script>
+    
 
 <style>
 @import "../../node_modules/bulma/css/bulma.css";
@@ -88,5 +96,4 @@ export default {
   max-height: 100px;
   background-color: #f5f5f5;
 }
-
 </style>

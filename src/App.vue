@@ -38,9 +38,9 @@
         </div>
       </div>
     </section>
-    <a ref="results"/>
-    <div >
-      <nav-bar   />
+    <a ref="results" />
+    <div>
+      <nav-bar />
     </div>
     <hr />
     <section class="container">
@@ -81,6 +81,16 @@
         </div>
       </div>
     </section>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Site développé et maintenu par
+          <a href="https://twitter.com/SebCarrere">Sebastien Carrere</a>. <br>
+          Le code OpenSource est disponible sur <a href="https://github.com/carrere/pjsl">GitHub</a>. <br>
+          Le contenu est collecté par la <a href="http://www.saintleon31.fr/"  >Mairie de Saint-Léon</a> avec l'accord des personnes morales ou physiques.
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -88,6 +98,7 @@
 import { mapActions } from "vuex";
 import NavBar from "@/components/NavBar.vue";
 import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
+
 export default {
   name: "App",
   components: {
@@ -98,9 +109,9 @@ export default {
     ...mapActions({ getResourcesFromServer: "recupererResources" }),
     searchKeyword() {
       window.scrollBy({
-      top: this.$refs.results.getBoundingClientRect().top,
-      behavior: "smooth",
-    });
+        top: this.$refs.results.getBoundingClientRect().top,
+        behavior: "smooth",
+      });
       this.$router.push({
         name: "searchPage",
         params: { search: this.search },
