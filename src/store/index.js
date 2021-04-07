@@ -26,6 +26,10 @@ export default new Vuex.Store({
         {
           categories[r.categorie]['count']++
         }
+        else
+        {
+          console.log(r)
+        }
         
       })
       return categories
@@ -61,7 +65,11 @@ export default new Vuex.Store({
         keys.map(k => content += ' ' + r[k])
         r['content'] = content.toLowerCase()
         r['id'] = count++
-        resources.push(r)
+        if (r.categorie)
+        {
+          resources.push(r)
+        }
+        
       })
       return resources
     }
@@ -79,7 +87,6 @@ export default new Vuex.Store({
             let config = { header: true }
 
             let resources = Papa.parse(res.data, config).data
-            //console.log(resources)
             context.commit('definirResources', resources)
             resolve(res)
           })
