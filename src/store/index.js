@@ -22,7 +22,11 @@ export default new Vuex.Store({
           categories[r.categorie]['route'] = "/category/" + r.categorie
           categories[r.categorie]['label'] = r.categorie.charAt(0).toUpperCase() + r.categorie.slice(1)
         }
-        categories[r.categorie]['count']++
+        if (r.categorie && categories[r.categorie])
+        {
+          categories[r.categorie]['count']++
+        }
+        
       })
       return categories
     },
@@ -41,7 +45,10 @@ export default new Vuex.Store({
           let route = "/category/" + r.categorie + "/" + r.souscategorie
           subcategories[r.categorie][r.souscategorie]['route'] = route
         }
-        subcategories[r.categorie][r.souscategorie]['count']++
+        if(r.categorie && subcategories[r.categorie] && subcategories[r.categorie][r.souscategorie])
+        {
+          subcategories[r.categorie][r.souscategorie]['count']++
+        }
       })
       return subcategories
     },
